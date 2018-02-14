@@ -15,6 +15,7 @@
  */
 package com.example.android.miwok;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.numbers).setOnClickListener(numberClickListener);
-
+        findViewById(R.id.colors).setOnClickListener(colorClickListener);
+        findViewById(R.id.family).setOnClickListener(familyClickListener);
+        findViewById(R.id.phrases).setOnClickListener(phraseClickListener);
     }
 
     TextView.OnClickListener numberClickListener = new View.OnClickListener() {
@@ -42,4 +45,27 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    TextView.OnClickListener colorClickListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent i=new Intent(MainActivity.this,ColorsActivity.class);
+            startActivity(i);
+        }
+    };
+
+    TextView.OnClickListener phraseClickListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent i=new Intent(MainActivity.this,PhrasesActivity.class);
+            startActivity(i);
+        }
+    };
+
+    TextView.OnClickListener familyClickListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent i=new Intent(MainActivity.this,FamilyActivity.class);
+            startActivity(i);
+        }
+    };
 }
