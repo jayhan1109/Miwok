@@ -1,75 +1,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-<<<<<<< Updated upstream
     android:layout_height="wrap_content"
     android:background="@color/tan_background"
     android:minHeight="@dimen/list_item_height"
     android:orientation="horizontal">
-||||||| merged common ancestors
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingTop="16dp">
-=======
-    android:layout_height="match_parent"
-    android:minHeight="@dimen/list_item_height"
-    android:orientation="horizontal">
->>>>>>> Stashed changes
 
-<<<<<<< Updated upstream
     <ImageView
         android:id="@+id/image"
         android:layout_width="@dimen/list_item_height"
         android:layout_height="@dimen/list_item_height" />
-||||||| merged common ancestors
-    <TextView
-        android:id="@+id/miwok_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-=======
-    <ImageView
-        android:id="@+id/list_image"
-        android:layout_width="@dimen/list_item_width"
-        android:layout_height="@dimen/list_item_height"
-        tools:background="@android:color/black" />
->>>>>>> Stashed changes
 
-<<<<<<< Updated upstream
     <LinearLayout
         android:id="@+id/text_container"
-||||||| merged common ancestors
-    <TextView
-        android:id="@+id/default_text_view"
-=======
-    <LinearLayout
-        android:id="@+id/list_item_background"
->>>>>>> Stashed changes
         android:layout_width="match_parent"
-<<<<<<< Updated upstream
         android:layout_height="match_parent"
         android:background="@color/category_numbers"
         android:orientation="vertical"
         android:paddingLeft="16dp">
-||||||| merged common ancestors
-        android:layout_height="wrap_content" />
-=======
-        android:layout_height="88dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingLeft="16dp">
 
-        <TextView
-            android:id="@+id/miwok_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:background="@android:color/background_dark" />
->>>>>>> Stashed changes
-
-<<<<<<< Updated upstream
         <TextView
             android:id="@+id/miwok_text_view"
             android:layout_width="match_parent"
@@ -80,17 +29,6 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             tools:text="lutti" />
-||||||| merged common ancestors
-=======
-        <TextView
-            android:id="@+id/default_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            tools:background="@android:color/holo_green_light" />
-    </LinearLayout>
->>>>>>> Stashed changes
 
         <TextView
             android:id="@+id/default_text_view"
