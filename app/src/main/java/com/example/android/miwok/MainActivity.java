@@ -31,41 +31,33 @@ public class MainActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.numbers).setOnClickListener(numberClickListener);
-        findViewById(R.id.colors).setOnClickListener(colorClickListener);
-        findViewById(R.id.family).setOnClickListener(familyClickListener);
-        findViewById(R.id.phrases).setOnClickListener(phraseClickListener);
+        findViewById(R.id.numbers).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, NumbersActivity.class);
+                startActivity(i);
+            }
+        });
+        findViewById(R.id.colors).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, ColorsActivity.class);
+                startActivity(i);
+            }
+        });
+        findViewById(R.id.family).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, FamilyActivity.class);
+                startActivity(i);
+            }
+        });
+        findViewById(R.id.phrases).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, PhrasesActivity.class);
+                startActivity(i);
+            }
+        });
     }
-
-    TextView.OnClickListener numberClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent i = new Intent(MainActivity.this, NumbersActivity.class);
-            startActivity(i);
-        }
-    };
-
-    TextView.OnClickListener colorClickListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent i=new Intent(MainActivity.this,ColorsActivity.class);
-            startActivity(i);
-        }
-    };
-
-    TextView.OnClickListener phraseClickListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent i=new Intent(MainActivity.this,PhrasesActivity.class);
-            startActivity(i);
-        }
-    };
-
-    TextView.OnClickListener familyClickListener=new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent i=new Intent(MainActivity.this,FamilyActivity.class);
-            startActivity(i);
-        }
-    };
 }

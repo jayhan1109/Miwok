@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 
+import android.media.MediaPlayer;
 import android.widget.ImageView;
 
 /**
@@ -10,27 +11,35 @@ import android.widget.ImageView;
 public class Word {
     private String mMiwokTranslation;
     private String mDefaultTranslation;
-    private int mImage=0;
+    private int mImage = 0;
+    private int mAudio;
 
     // Constructor
-    public Word(String mDefaultTranslation,String mMiwokTranslation){
-        this.mDefaultTranslation=mDefaultTranslation;
-        this.mMiwokTranslation=mMiwokTranslation;
+    public Word(String mDefaultTranslation, String mMiwokTranslation, int mAudio) {
+        this.mDefaultTranslation = mDefaultTranslation;
+        this.mMiwokTranslation = mMiwokTranslation;
+        this.mAudio=mAudio;
     }
 
-    public Word(String mDefaultTranslation,String mMiwokTranslation,int mImage){
-        this.mDefaultTranslation=mDefaultTranslation;
-        this.mMiwokTranslation=mMiwokTranslation;
-        this.mImage=mImage;
+    public Word(String mDefaultTranslation, String mMiwokTranslation, int mImage, int mAudio) {
+        this.mDefaultTranslation = mDefaultTranslation;
+        this.mMiwokTranslation = mMiwokTranslation;
+        this.mImage = mImage;
+        this.mAudio=mAudio;
     }
 
-    public String getDefaultTranslation(){
+    public String getDefaultTranslation() {
         return mDefaultTranslation;
     }
 
-    public String getmMiwokTranslation(){
+    public String getmMiwokTranslation() {
         return mMiwokTranslation;
     }
 
-    public int getmImage(){return mImage;}
+    public int getmImage() {
+        return mImage;
+    }
+
+    public int getmAudio(){return mAudio;}
+
 }

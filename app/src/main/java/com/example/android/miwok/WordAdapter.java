@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.AndroidCharacter;
@@ -22,35 +23,35 @@ import java.util.ArrayList;
 public class WordAdapter extends ArrayAdapter<Word> {
     private int listBackgroundColor;
 
-    public WordAdapter(Context context, ArrayList<Word> array,int listBackgroundColor)
-    {
-        super(context, 0,array);
-        this.listBackgroundColor=listBackgroundColor;
+    public WordAdapter(Context context, ArrayList<Word> array, int listBackgroundColor) {
+        super(context, 0, array);
+        this.listBackgroundColor = listBackgroundColor;
     }
+
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View listItemView=convertView;
-        if(listItemView==null){
+        View listItemView = convertView;
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
 
-        Word wordLists=getItem(position);
+        Word wordLists = getItem(position);
 
-        ImageView listImageView=(ImageView) listItemView.findViewById(R.id.list_image);
-        if(wordLists.getmImage()!=0)
-        listImageView.setImageResource(wordLists.getmImage());
+        ImageView listImageView = (ImageView) listItemView.findViewById(R.id.list_image);
+        if (wordLists.getmImage() != 0)
+            listImageView.setImageResource(wordLists.getmImage());
         else listImageView.setVisibility(View.GONE);
 
-        TextView miwokTextVIEW=(TextView) listItemView.findViewById(R.id.miwok_text_view);
+        TextView miwokTextVIEW = (TextView) listItemView.findViewById(R.id.miwok_text_view);
         miwokTextVIEW.setText(wordLists.getmMiwokTranslation());
 
-        TextView defaultTextView=(TextView) listItemView.findViewById(R.id.default_text_view);
+        TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         defaultTextView.setText(wordLists.getDefaultTranslation());
 
-        LinearLayout listLinear=(LinearLayout)listItemView.findViewById(R.id.list_item_background);
+        LinearLayout listLinear = (LinearLayout) listItemView.findViewById(R.id.list_item_background);
         listLinear.setBackgroundResource(listBackgroundColor);
 
         return listItemView;
