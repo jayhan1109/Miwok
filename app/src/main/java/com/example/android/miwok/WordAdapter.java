@@ -1,6 +1,7 @@
 package com.example.android.miwok;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.lang.reflect.Type;
@@ -51,7 +53,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         defaultTextView.setText(wordLists.getDefaultTranslation());
 
-        LinearLayout listLinear = (LinearLayout) listItemView.findViewById(R.id.list_item_background);
+        RelativeLayout listLinear = (RelativeLayout) listItemView.findViewById(R.id.list_item_background);
         listLinear.setBackgroundResource(listBackgroundColor);
 
         return listItemView;

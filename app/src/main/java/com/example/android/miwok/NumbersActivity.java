@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,8 +17,9 @@ import java.util.ArrayList;
 public class NumbersActivity extends AppCompatActivity {
 
     private MediaPlayer mMediaPlayer;
+    AudioManager am;
 
-   private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
             Toast.makeText(NumbersActivity.this, "I'm done", Toast.LENGTH_SHORT).show();
@@ -24,11 +27,30 @@ public class NumbersActivity extends AppCompatActivity {
         }
     };
 
-    @Override
+    private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            switch (focusChange) {
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                    mMediaPlayer.pause();
+                    mMediaPlayer.seekTo(0);
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS:
+                    releaseMediaPlayer();
+                    break;
+                case AudioManager.AUDIOFOCUS_GAIN:
+                    mMediaPlayer.start();
+            }
+        }
+    };
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.category_numbers);
         setContentView(R.layout.activity_word);
+        am = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Create an array of words
         final ArrayList<Word> words = new ArrayList<Word>();
@@ -50,16 +72,20 @@ public class NumbersActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Word word = words.get(i);
-                releaseMediaPlayer();
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Word word = words.get(i);
+            releaseMediaPlayer();
+            int result = am.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+            if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                 mMediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getmAudio());
                 mMediaPlayer.start();
                 mMediaPlayer.setOnCompletionListener(mCompletionListener);
             }
-        });
-    }
+        }
+    });
+}
+
 
     /**
      * Clean up the media player by releasing its resources.
@@ -75,6 +101,16 @@ public class NumbersActivity extends AppCompatActivity {
             // setting the media player to null is an easy way to tell that the media player
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
+
+            am.abandonAudioFocus(mOnAudioFocusChangeListener);
+
         }
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
 }
+
